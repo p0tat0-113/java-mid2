@@ -19,7 +19,7 @@ public class Wild1 {
 
     //와일드 카드의 한계, wildCardMethod는 결국 일반 메서드일 뿐이다. 단지 매개변수로 제네릭 타입을 받는 것 뿐.
     //제네릭 메서드처럼 반환 타입을 동적으로 바꾸지는 못함.
-    static List wildCardMethod(List<? extends Number> list){//와일드카드에도 상한선을 걸 수 있다.
+    static List<?> wildCardMethod(List<? extends Number> list){//와일드카드에도 상한선을 걸 수 있다.
         System.out.println(list);
         return list;
     }
@@ -32,7 +32,7 @@ public class Wild1 {
         //wildCardMethod(new ArrayList<String>());
 
         List<Integer> returnedList1 = genericMethod(new ArrayList<>(List.of(1, 2, 3, 4, 5)));//이 부분에서 타입 추론이 발생. 제네릭 메서드의 타입 매개변수가 정해짐.
-        List returnedList2 = wildCardMethod(new ArrayList<>(List.of(1, 2, 3, 4, 5)));
+        List returnedList2 = wildCardMethod(new ArrayList<>(List.of(1, 2, 3, 4, 5)));//원시타입으로 받게됨.
 
         Integer integer1 = returnedList1.get(0);
         Integer integer2 = (Integer) returnedList2.get(0);//여기에서 와일드카드의 한계가 드러난다.
